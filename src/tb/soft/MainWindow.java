@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
     private static final String title = "Log in Window";
@@ -83,6 +85,15 @@ public class MainWindow extends JFrame {
         });
         toolBar.add(btnClearButton);
 
+        JPanel contentPane = new JPanel();
+
+        contentPane.setBorder(new EmptyBorder(50, 50, 50, 50));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        MyPanel panel = new MyPanel();
+        panel.setBounds(55, 55, 55, 55);
+        contentPane.add(panel);
 
     }
 
