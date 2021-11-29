@@ -84,7 +84,7 @@ public class MainWindow extends JFrame {
             }
         });
         toolBar.add(btnClearButton);
-
+/*
         JPanel contentPane = new JPanel();
 
         contentPane.setBorder(new EmptyBorder(50, 50, 50, 50));
@@ -94,6 +94,12 @@ public class MainWindow extends JFrame {
         MyPanel panel = new MyPanel();
         panel.setBounds(55, 55, 55, 55);
         contentPane.add(panel);
+*/
+        JTextField jtfUser  = new JTextField("",15);
+        JTextField jtfPassword  = new JPasswordField("",15);
+
+        JButton jbLogIn = new JButton("Log In");
+        JButton jbClear = new JButton("Clear");
 
     }
 
