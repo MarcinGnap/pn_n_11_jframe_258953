@@ -19,7 +19,9 @@ public class MainWindow extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    MainWindow frame = new MainWindow();
+                    JPanel panel = new JPanel();
+                    MainWindow frame = new MainWindow(panel);
+                    frame.add(panel);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace(System.err);
@@ -28,15 +30,17 @@ public class MainWindow extends JFrame {
         });
     }
 
-    public MainWindow() throws HeadlessException {
+    public MainWindow(JPanel panel) throws HeadlessException {
         super(title);
-        buildFrame();
+        buildFrame(panel);
     }
 
-    protected void buildFrame() {
+    protected void buildFrame(JPanel panel) {
 
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 285, 210);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        panel.setLayout(null);
 
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -84,22 +88,43 @@ public class MainWindow extends JFrame {
             }
         });
         toolBar.add(btnClearButton);
-/*
-        JPanel contentPane = new JPanel();
 
-        contentPane.setBorder(new EmptyBorder(50, 50, 50, 50));
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
 
-        MyPanel panel = new MyPanel();
-        panel.setBounds(55, 55, 55, 55);
-        contentPane.add(panel);
-*/
-        JTextField jtfUser  = new JTextField("",15);
-        JTextField jtfPassword  = new JPasswordField("",15);
+        JLabel jlUser = new JLabel("User:");
+        jlUser.setBounds(10, 10, 80, 25);
+        panel.add(jlUser);
 
-        JButton jbLogIn = new JButton("Log In");
+        JTextField jtUser = new JTextField(20);
+        jtUser.setBounds(100, 10, 160, 25);
+        panel.add(jtUser);
+
+        JLabel jlPassword = new JLabel("Password:");
+        jlPassword.setBounds(10, 40, 80, 25);
+        panel.add(jlPassword);
+
+        JPasswordField jpfPassword = new JPasswordField(20);
+        jpfPassword.setBounds(100, 40, 160, 25);
+        panel.add(jpfPassword);
+
+        JButton jbLogIn = new JButton("Log in");
+        jbLogIn.setBounds(10, 80, 80, 25);
+        panel.add(jbLogIn);
+        jbLogIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doLogIn();
+            }
+        });
+
         JButton jbClear = new JButton("Clear");
+        jbClear.setBounds(180, 80, 80, 25);
+        panel.add(jbClear);
+        jbClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doClear();
+            }
+        });
 
     }
 
