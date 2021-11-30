@@ -19,8 +19,6 @@ public class MainWindow extends JFrame {
     private static final String title = "Log in Window";
     private HashMap<String, String> hmPass = new HashMap<String, String>();
 
-    hmPass.put("User", "Password");
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -41,7 +39,21 @@ public class MainWindow extends JFrame {
         buildFrame(panel);
     }
 
+    private void createMap(HashMap hmPass){
+        hmPass.put("User", "Password");
+        hmPass.put("Try", "This");
+        hmPass.put("Marcin", "Gnap");
+        hmPass.put("Jezyki", "Programowania");
+        hmPass.put("Not", "Logginin");
+        hmPass.put("Something", "New");
+        hmPass.put("Mountain", "Dew");
+        hmPass.put("Java", "Script");
+        hmPass.put("Hash", "Map");
+        hmPass.put("Array", "List");
+    }
+
     protected void buildFrame(JPanel panel) {
+        createMap(hmPass);
 
         setBounds(100, 100, 285, 210);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
