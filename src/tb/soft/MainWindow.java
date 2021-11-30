@@ -9,11 +9,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
     private static final String title = "Log in Window";
+    private HashMap hmPass = new HashMap();
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -67,7 +71,7 @@ public class MainWindow extends JFrame {
         jbLogIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                doLogIn();
+                doLogIn(panel, jtUser, jpfPassword);
             }
         });
 
@@ -89,7 +93,7 @@ public class MainWindow extends JFrame {
         mnitLogIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                doLogIn();
+                doLogIn(panel, jtUser, jpfPassword);
             }
         });
         mnitLogIn.setMnemonic(KeyEvent.VK_L);
@@ -110,7 +114,7 @@ public class MainWindow extends JFrame {
         btnLogInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                doLogIn();
+                doLogIn(panel, jtUser, jpfPassword);
             }
         });
         toolBar.add(btnLogInButton);
@@ -128,8 +132,33 @@ public class MainWindow extends JFrame {
     }
 
 
-    private void doLogIn(){
 
+    private void doLogIn(JPanel panel, JTextField jtUser, JPasswordField jpfPassword){
+        String sUser;
+        String sPassword;
+        sUser = jtUser.getText();
+        sPassword = jpfPassword.getText();
+        for(Map.Entry<String, String> entry : hmPass.entrySet()){
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if (sUser.equalsIgnoreCase(key) && sPassword.equalsIgnoreCase(value)) {
+                panel.setBackground(Color.GREEN);
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                panel.setBackground(Color.LIGHT_GRAY);
+            } else {
+                panel.setBackground(Color.RED);
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                panel.setBackground(Color.LIGHT_GRAY);
+            }
+        }
     }
 
     private void doClear(JTextField jtUser, JPasswordField jpfPassword){
