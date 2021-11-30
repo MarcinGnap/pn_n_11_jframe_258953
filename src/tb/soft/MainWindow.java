@@ -45,51 +45,6 @@ public class MainWindow extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        JMenu mnMenu = new JMenu("Menu");
-        menuBar.add(mnMenu);
-        mnMenu.setMnemonic(KeyEvent.VK_M);
-
-        JMenuItem mnitLogIn = new JMenuItem("Log in");
-        mnitLogIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                doLogIn();
-            }
-        });
-        mnitLogIn.setMnemonic(KeyEvent.VK_L);
-        mnMenu.add(mnitLogIn);
-
-        JMenuItem mnitClear = new JMenuItem("Clear");
-        mnitClear.addActionListener(e -> {
-            doClear();
-        });
-        mnitClear.setMnemonic(KeyEvent.VK_C);
-        mnMenu.add(mnitClear);
-
-        JToolBar toolBar = new JToolBar();
-        getContentPane().add(toolBar, BorderLayout.NORTH);
-
-        JButton btnLogInButton = new JButton("Log In");
-        btnLogInButton.setMnemonic(KeyEvent.VK_L);
-        btnLogInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                doLogIn();
-            }
-        });
-        toolBar.add(btnLogInButton);
-
-        JButton btnClearButton = new JButton("Clear");
-        btnClearButton.setMnemonic(KeyEvent.VK_C);
-        btnClearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                doClear();
-            }
-        });
-        toolBar.add(btnClearButton);
-
-
         JLabel jlUser = new JLabel("User:");
         jlUser.setBounds(10, 10, 80, 25);
         panel.add(jlUser);
@@ -122,9 +77,53 @@ public class MainWindow extends JFrame {
         jbClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                doClear();
+                doClear(jtUser, jpfPassword);
             }
         });
+
+        JMenu mnMenu = new JMenu("Menu");
+        menuBar.add(mnMenu);
+        mnMenu.setMnemonic(KeyEvent.VK_M);
+
+        JMenuItem mnitLogIn = new JMenuItem("Log in");
+        mnitLogIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doLogIn();
+            }
+        });
+        mnitLogIn.setMnemonic(KeyEvent.VK_L);
+        mnMenu.add(mnitLogIn);
+
+        JMenuItem mnitClear = new JMenuItem("Clear");
+        mnitClear.addActionListener(e -> {
+            doClear(jtUser, jpfPassword);
+        });
+        mnitClear.setMnemonic(KeyEvent.VK_C);
+        mnMenu.add(mnitClear);
+
+        JToolBar toolBar = new JToolBar();
+        getContentPane().add(toolBar, BorderLayout.NORTH);
+
+        JButton btnLogInButton = new JButton("Log In");
+        btnLogInButton.setMnemonic(KeyEvent.VK_L);
+        btnLogInButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doLogIn();
+            }
+        });
+        toolBar.add(btnLogInButton);
+
+        JButton btnClearButton = new JButton("Clear");
+        btnClearButton.setMnemonic(KeyEvent.VK_C);
+        btnClearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                doClear(jtUser, jpfPassword);
+            }
+        });
+        toolBar.add(btnClearButton);
 
     }
 
@@ -133,7 +132,8 @@ public class MainWindow extends JFrame {
 
     }
 
-    private void doClear(){
-
+    private void doClear(JTextField jtUser, JPasswordField jpfPassword){
+        jtUser.setText("");
+        jpfPassword.setText("");
     }
 }
