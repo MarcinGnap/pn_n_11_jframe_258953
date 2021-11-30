@@ -17,7 +17,9 @@ import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame {
     private static final String title = "Log in Window";
-    private HashMap hmPass = new HashMap();
+    private HashMap<String, String> hmPass = new HashMap<String, String>();
+
+    hmPass.put("User", "Password");
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
