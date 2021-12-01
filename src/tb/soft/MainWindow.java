@@ -188,7 +188,7 @@ public class MainWindow extends JFrame {
             } else {
                 panel.setBackground(Color.RED);
                 try {
-                    TimeUnit.SECONDS.sleep(2);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
