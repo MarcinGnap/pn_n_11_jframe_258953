@@ -1,1 +1,2 @@
-0 - program "hello" - konsolowy
+Program Main Window  
+Podstawowe okno logowania Swing

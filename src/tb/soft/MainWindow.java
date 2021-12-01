@@ -2,18 +2,23 @@ package tb.soft;
 
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+
+
+/*
+        Autor:  Marcin Gnap 258953
+        Program: Podstawowe okno logowania Swing
+        Data: 30.11.2021 r.
+ */
+
+
+
 
 public class MainWindow extends JFrame {
     private static final String title = "Log in Window";
@@ -39,6 +44,9 @@ public class MainWindow extends JFrame {
         buildFrame(panel);
     }
 
+
+    //Baza danych logowania.
+
     private void createMap(HashMap hmPass){
         hmPass.put("User", "Password");
         hmPass.put("Try", "This");
@@ -51,6 +59,9 @@ public class MainWindow extends JFrame {
         hmPass.put("Hash", "Map");
         hmPass.put("Array", "List");
     }
+
+
+    //Tworzenie elementów okna i wywoływanie metod.
 
     protected void buildFrame(JPanel panel) {
         createMap(hmPass);
@@ -146,6 +157,18 @@ public class MainWindow extends JFrame {
     }
 
 
+    /*
+    Niestety zmiana koloru nie działa tak jak powinna.
+    Program sam z siebie pomija pierwszą zmianę
+    i zamienia ją jakby w dodatkową metodę Thread.sleep().
+    Nie znalazłem nigdzie rozwiązania na to, jeśli Doktor
+    wie, dlaczego tak się dzieje to byłbym bardzo wdzięczny
+    za odpowiedź w komentarzu do rozwiązania na eportalu.
+     */
+
+
+    //  Metoda sprawdzająca czy dane są dostępne w bazie
+    //  i w zależności od tego zmienia kolor panelu.
 
     private void doLogIn(JPanel panel, JTextField jtUser, JPasswordField jpfPassword){
         String sUser;
@@ -158,11 +181,10 @@ public class MainWindow extends JFrame {
             if (sUser.equalsIgnoreCase(key) && sPassword.equalsIgnoreCase(value)) {
                 panel.setBackground(Color.GREEN);
                 try {
-                    TimeUnit.SECONDS.sleep(2);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                panel.setBackground(Color.LIGHT_GRAY);
             } else {
                 panel.setBackground(Color.RED);
                 try {
@@ -170,10 +192,13 @@ public class MainWindow extends JFrame {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                panel.setBackground(Color.LIGHT_GRAY);
             }
+            panel.setBackground(Color.LIGHT_GRAY);
         }
     }
+
+
+    //  Metoda czyszcząca TextField i PasswordField.
 
     private void doClear(JTextField jtUser, JPasswordField jpfPassword){
         jtUser.setText("");
